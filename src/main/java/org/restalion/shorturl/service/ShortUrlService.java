@@ -52,11 +52,8 @@ public class ShortUrlService {
     }
 
     public String getActualUrl(String shortenUrl) {
-        System.out.println("Shorten URL: " + shortenUrl);
         ShortenUrlEntity entity = repo.findById(shortenUrl);
-        System.out.println("entity: " + entity);
         if (entity != null) {
-            System.out.println("entity.getActualUrl(): " + entity.getActualUrl());
             return entity.getActualUrl();
         } else {
             return null;
