@@ -14,3 +14,4 @@ public class ShortUrlRequestDto {
         this.actualUrl = actualUrl;
     }
 }
+    
