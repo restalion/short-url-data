@@ -1,3 +1,5 @@
+![Java CI with Maven](https://github.com/restalion/short-url-data/workflows/Java%20CI%20with%20Maven/badge.svg)
+
 # short-url-data project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
