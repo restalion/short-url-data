@@ -1,9 +1,5 @@
 package org.restalion.shorturl.service;
 
-import java.nio.charset.Charset;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -16,6 +12,9 @@ public class ShortUrlService {
 
     @ConfigProperty(name = "shorturl.baseurl") 
     String baseUrl;
+
+    @ConfigProperty(name = "shorturl.digits") 
+    Integer digits;
 
     @Inject
     ShortenUrlRepository repo;
@@ -43,7 +42,7 @@ public class ShortUrlService {
         ShortenUrlEntity shortenUrl = null;
         RandomString randomString;
         do  {
-            randomString = new RandomString(16);
+            randomString = new RandomString(digits);
             generatedString = randomString.nextString();
             shortenUrl = repo.findById(generatedString);
         } while (shortenUrl != null);
