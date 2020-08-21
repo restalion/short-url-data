@@ -2,7 +2,9 @@ package org.restalion.shorturl.service;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.validation.ValidationException;
 
+import org.apache.commons.validator.UrlValidator;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.restalion.shorturl.entity.ShortenUrlEntity;
 import org.restalion.shorturl.repository.ShortenUrlRepository;
@@ -19,7 +21,11 @@ public class ShortUrlService {
     @Inject
     ShortenUrlRepository repo;
 
-    public String createShortenUrl(String actualUrl) {
+    public String createShortenUrl(String actualUrl) throws ValidationException {
+
+        UrlValidator validator = new UrlValidator();
+        if (!validator.isValid(actualUrl))
+            throw new ValidationException();
 
         String shortenCode = generateUniqueShortenValue();
 
